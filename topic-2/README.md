@@ -209,9 +209,7 @@ Boxplots provide a skeletal representation of a distribution, and they are very 
 
    - The box itself represents the interquartile range (IQR), which is the range between the first quartile ($Q1$) and the third quartile ($Q3$).
 
-   $$
-   \text{IQR} = Q3 - Q1
-   $$
+   $$\text{IQR} = Q3 - Q1$$
 
    - This range contains the middle 50% of the data.
 
