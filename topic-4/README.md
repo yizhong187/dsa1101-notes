@@ -39,7 +39,7 @@ $$
 ---
 
 <div style="text-align: center;">
-  <img src="diagrams/knn1.png"  style="max-height: 150px;">
+  <img src="diagrams/knn1.png"  height="300">
 </div>
 
 Blue = 0, orange = 1. The $k$-nearest neighbors classification using $k = 3$.
@@ -58,13 +58,13 @@ Right: the $k$-nearest neighbors decision boundary.
 For the K-NN diagrams, the purple dash line refers to **Bayes Decision**, which we regard as the gold standard.
 
 <div style="text-align: center;">
-  <img src="diagrams/knn2.png"  style="max-height: 200px;">
+  <img src="diagrams/knn2.png"  height="400">
 </div>
 
 When $k = 1$, the decision boundary is overly flexible and influenced by local features of a handful of training data points $\rightarrow$ low bias, high variance.
 
 <div style="text-align: center;">
-  <img src="diagrams/knn3.png"  style="max-height: 200px;">
+  <img src="diagrams/knn3.png"  height="400">
 </div>
 
 When $k = 100$, the method yields more stable but less flexible decision boundaries $\rightarrow$ high bias, low variance.
@@ -261,7 +261,7 @@ In general, for two class labels, $C$ and $C'$, where $C'$ denotes "not $C$", so
 
 </br>
 <div style="text-align: center;">
-  <img src="diagrams/confusionmatrix.png"  style="max-height: 50px;">
+  <img src="diagrams/confusionmatrix.png"  height="100">
 </div>
 
 TP and TN are the correct predictions. A good classifier should have large TP and TN; and has small numbers (ideally zero) for FP and FN.
@@ -366,7 +366,7 @@ Notice that the accuracy is slightly higher.
 ### N-fold Cross Validation
 
 <div style="text-align: center;">
-  <img src="diagrams/nfoldcrossvalidation.png"  style="max-height: 240px;">
+  <img src="diagrams/nfoldcrossvalidation.png"  height="370">
 </div>
 
 1. The entire data set is randomly split into $N$ data sets of approximately equal size.

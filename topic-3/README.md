@@ -357,7 +357,7 @@ hist(train.data$resale_price) # if we plan to use train.data to form the model
 ```
 
 <div style="text-align: center;">
-  <img src="diagrams/traindataresalepricehistogram.png" alt="Right skewed response histogram" style="max-height: 200px;">
+  <img src="diagrams/traindataresalepricehistogram.png" alt="Right skewed response histogram" height="400">
 </div>
 
 In both cases, the response is **NOT symmetric**, and is very **right skewed**. Hence, it's **NOT SUITABLE** to fit a linear model for resale price.
@@ -371,7 +371,7 @@ hist(log(resale$resale_price)) # slightly better, more symmetric
 ```
 
 <div style="text-align: center;">
-  <img src="diagrams/logtraindataresalepricehistogram.png" alt="More symmetric response histogram" height="200">
+  <img src="diagrams/logtraindataresalepricehistogram.png" alt="More symmetric response histogram" height="400">
 </div>
 
 Hence, fitting a linear model for the log-e of the price is better than fitting a LM for the price itself.
@@ -385,7 +385,7 @@ plot(resale$floor_area_sqm, resale$resale_price)
 ```
 
 <div style="text-align: center;">
-  <img src="diagrams/floorareasqmagainstresaleprice.png" height="200">
+  <img src="diagrams/floorareasqmagainstresaleprice.png" height="400">
 </div>
 
 ---
@@ -395,5 +395,5 @@ plot(resale$age, resale$resale_price)
 ```
 
 <div style="text-align: center;">
-  <img src="diagrams/leasecommencedateagainstresaleprice.png" height="200">
+  <img src="diagrams/leasecommencedateagainstresaleprice.png" height="400">
 </div>
