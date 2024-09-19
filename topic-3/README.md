@@ -356,7 +356,7 @@ hist(resale$resale_price) # if we plan to use full data to form model
 hist(train.data$resale_price) # if we plan to use train.data to form the model
 ```
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/traindataresalepricehistogram.png" alt="Right skewed response histogram" height="400">
 </div>
 
@@ -370,7 +370,7 @@ After transformation, such as taking log-e, or sqrt, the response is more symmet
 hist(log(resale$resale_price)) # slightly better, more symmetric
 ```
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/logtraindataresalepricehistogram.png" alt="More symmetric response histogram" height="400">
 </div>
 
@@ -384,7 +384,7 @@ Use scatter plot of $y$ vs quantitative $x$, and check if the range of response 
 plot(resale$floor_area_sqm, resale$resale_price)
 ```
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/floorareasqmagainstresaleprice.png" height="400">
 </div>
 
@@ -394,6 +394,6 @@ plot(resale$floor_area_sqm, resale$resale_price)
 plot(resale$age, resale$resale_price)
 ```
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/leasecommencedateagainstresaleprice.png" height="400">
 </div>

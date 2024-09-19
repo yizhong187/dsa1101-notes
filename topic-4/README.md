@@ -38,7 +38,7 @@ $$
 
 ---
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/knn1.png"  height="300">
 </div>
 
@@ -57,13 +57,13 @@ Right: the $k$-nearest neighbors decision boundary.
 
 For the K-NN diagrams, the purple dash line refers to **Bayes Decision**, which we regard as the gold standard.
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/knn2.png"  height="400">
 </div>
 
 When $k = 1$, the decision boundary is overly flexible and influenced by local features of a handful of training data points $\rightarrow$ low bias, high variance.
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/knn3.png"  height="400">
 </div>
 
@@ -260,7 +260,7 @@ In general, for two class labels, $C$ and $C'$, where $C'$ denotes "not $C$", so
 ### Confusion Matrix
 
 </br>
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/confusionmatrix.png"  height="100">
 </div>
 
@@ -365,7 +365,7 @@ Notice that the accuracy is slightly higher.
 
 ### N-fold Cross Validation
 
-<div style="text-align: center;">
+<div align="center">
   <img src="diagrams/nfoldcrossvalidation.png"  height="370">
 </div>
 
