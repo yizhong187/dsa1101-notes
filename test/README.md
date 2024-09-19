@@ -2,31 +2,31 @@
 
 ### Categorical Response
 
-Many learning tasks involve the following: given the value of predictors $ X $, make a good prediction of the outcome $ y $ which we denote by $ \hat{G} $.
+Many learning tasks involve the following: given the value of predictors $X$, make a good prediction of the outcome $y$ which we denote by $\hat{G}$.
 
-In some cases, the outcome $ y $ is categorical, which is typically represented numerically by codes. For example, a categorical outcome with binary response is often represented by $ 0 $, $ 1 $.
+In some cases, the outcome $y$ is categorical, which is typically represented numerically by codes. For example, a categorical outcome with binary response is often represented by $0$, $1$.
 
-One approach is to treat the binary coded outcome $ y $ as a quantitative variable to get the prediction. Then, assign a class label to $ \hat{G} $ according to whether the prediction is larger than $ \delta $, which is a constant in $ (0, 1) $ and is chosen case by case.
+One approach is to treat the binary coded outcome $y$ as a quantitative variable to get the prediction. Then, assign a class label to $\hat{G}$ according to whether the prediction is larger than $\delta$, which is a constant in $(0, 1)$ and is chosen case by case.
 
 ### K-Nearest Neighbors Classification
 
-There are $ n $ training points with features $ x $ and categorical response $ y $. Each $ (x_i, y_i) $ is the information of an observation.
+There are $n$ training points with features $x$ and categorical response $y$. Each $(x_i, y_i)$ is the information of an observation.
 
-With the information $ x $, the prediction on the category for the response is denoted as $ \hat{G}(x) $.
+With the information $x$, the prediction on the category for the response is denoted as $\hat{G}(x)$.
 
-For simplicity, we only consider the cases of binary response $ (0, 1) $ only. Hence, the prediction, $ \hat{G}(x) $, is either $ 0 $ or $ 1 $.
+For simplicity, we only consider the cases of binary response $(0, 1)$ only. Hence, the prediction, $\hat{G}(x)$, is either $0$ or $1$.
 
 ---
 
-The $ k $-nearest neighbors method uses training points closest in feature space to $ x $ to find:
+The $k$-nearest neighbors method uses training points closest in feature space to $x$ to find:
 
 $$
 \frac{1}{k} \sum_{i \in \mathcal{N}_k(x)} y_i
 $$
 
-where $ \mathcal{N}\_k(x) $ is the neighborhood of $ x $ defined as the set of $ k $ closest points (in terms of Euclidean distance).
+where $\mathcal{N}_k(x)$ is the neighborhood of $x$ defined as the set of $k$ closest points (in terms of Euclidean distance).
 
-$ \delta $ is a pre-chosen threshold, and the average above is converted to $ \hat{G}(x) $ according to the rule
+$\delta$ is a pre-chosen threshold, and the average above is converted to $\hat{G}(x)$ according to the rule
 
 $$
 \hat{G}(x) =
@@ -42,16 +42,16 @@ $$
   <img src="diagrams/knn1.png"  style="max-height: 300px;">
 </div>
 
-Blue = 0, orange = 1. The $ k $-nearest neighbors classification using $ k = 3 $.
+Blue = 0, orange = 1. The $k$-nearest neighbors classification using $k = 3$.
 
 Left:
 
 - A new observation, marked with an “X”, is being classified.
 - A green circle surrounds the new observation, representing the boundary of the 3-nearest neighbors.
 - Inside this boundary, there are two blue points (class 0) and one orange point (class 1).
-- The predicted outcome $ \hat{Y} $ at the marked feature value is $ \frac{1}{3} $, hence $ \hat{G} = 0 $.
+- The predicted outcome $\hat{Y}$ at the marked feature value is $\frac{1}{3}$, hence $\hat{G} = 0$.
 
-Right: the $ k $-nearest neighbors decision boundary.
+Right: the $k$-nearest neighbors decision boundary.
 
 ---
 
@@ -61,27 +61,27 @@ For the K-NN diagrams, the purple dash line refers to **Bayes Decision**, which 
   <img src="diagrams/knn2.png"  style="max-height: 400px;">
 </div>
 
-When $ k = 1 $, the decision boundary is overly flexible and influenced by local features of a handful of training data points $ \rightarrow $ low bias, high variance.
+When $k = 1$, the decision boundary is overly flexible and influenced by local features of a handful of training data points $\rightarrow$ low bias, high variance.
 
 <div style="text-align: center;">
   <img src="diagrams/knn3.png"  style="max-height: 400px;">
 </div>
 
-When $ k = 100 $, the method yields more stable but less flexible decision boundaries $ \rightarrow $ high bias, low variance.
+When $k = 100$, the method yields more stable but less flexible decision boundaries $\rightarrow$ high bias, low variance.
 
-Note that large or small of $ k $ is with respect to $ n $:
-$ k = 50 $ is large for $ n = 100 $, but small for $ n = 100000 $.
+Note that large or small of $k$ is with respect to $n$:
+$k = 50$ is large for $n = 100$, but small for $n = 100000$.
 
 ---
 
 ### Application: Stock Market Data
 
-We will use the `knn()` function from the 'class' package in R to perform $ k $-nearest neighbors classification and prediction. We need the following four inputs to `knn()`:
+We will use the `knn()` function from the 'class' package in R to perform $k$-nearest neighbors classification and prediction. We need the following four inputs to `knn()`:
 
-1. A matrix containing the predictors or features $ x $ associated with the training data
-2. A matrix containing the predictors or features $ x $ associated with the data for which we wish to make predictions
+1. A matrix containing the predictors or features $x$ associated with the training data
+2. A matrix containing the predictors or features $x$ associated with the data for which we wish to make predictions
 3. A vector containing the class labels for the training data
-4. A value for $ k $, the number of nearest neighbors to be used by the classifier
+4. A value for $k$, the number of nearest neighbors to be used by the classifier
 
 The first 3 items are all retrieved from the dataset.
 
@@ -160,13 +160,13 @@ dim(test.data) # [1] 252  10
 
 ### Forming a <u>Set of Features</u> for Training and for Testing
 
-**Item 1** - A matrix containing the predictors or features $ x $ associated with the training data:
+**Item 1** - A matrix containing the predictors or features $x$ associated with the training data:
 
 ```r
 train.x = train.data[ ,c("Lag1","Lag2","Lag3","Lag4","Lag5")]
 ```
 
-**Item 2** - A matrix containing the predictors or features $ x $ associated with the data for which we wish to make predictions:
+**Item 2** - A matrix containing the predictors or features $x$ associated with the data for which we wish to make predictions:
 
 ```r
 test.x = test.data[ ,c("Lag1","Lag2","Lag3","Lag4","Lag5")]
@@ -186,7 +186,7 @@ train.y = train.data[ ,c("Direction")]
 
 ### Forming Model (Classifier)
 
-**Item 4** - A value for $ k $, the number of nearest neighbors to be used by the classifier: $ k = 1$
+**Item 4** - A value for $k$, the number of nearest neighbors to be used by the classifier: $k = 1\)
 
 ```r
 knn.pred = knn(train.x,test.x,train.y,k=1)
@@ -218,7 +218,7 @@ knn.pred = knn(train.x,test.x,train.y,k=1, prob = TRUE)
 prob = attr(knn.pred, "prob") # this will be the predicted probability.
 ```
 
-However, with $ k = 1$, it will return a probability of 1 for the nearest neighbour's class since the winner class is the only point considered.
+However, with $k = 1\), it will return a probability of 1 for the nearest neighbour's class since the winner class is the only point considered.
 
 ```
 [1] 1 1 1 1 1 ...
@@ -250,12 +250,12 @@ data.frame(test.y, knn.pred) # combines the true class label and predicted class
 
 When a classifier is built, it helps to assign class labels to person, item, or transaction. There is a need to evaluate its performance.
 
-In general, for two class labels, $ C $ and $ C' $, where $ C' $ denotes "not $ C $", some working definitions and formulas follow:
+In general, for two class labels, $C$ and $C'$, where $C'$ denotes "not $C$", some working definitions and formulas follow:
 
-- **True Positive**: Predict $ C $, when actually $ C $
-- **True Negative**: Predict $ C' $, when actually $ C' $
-- **False Positive**: Predict $ C $, when actually $ C' $
-- **False Negative**: Predict $ C' $, when actually $ C $
+- **True Positive**: Predict $C$, when actually $C$
+- **True Negative**: Predict $C'$, when actually $C'$
+- **False Positive**: Predict $C$, when actually $C'$
+- **False Negative**: Predict $C'$, when actually $C$
 
 ### Confusion Matrix
 
@@ -283,7 +283,7 @@ test.y Down Up
 ```
 
 55 Downs were predicted correctly; 75 Ups were predicted correctly.
-The rest (56 + 66) were predicted wrongly by the KNN classifier where $ k = 1$.
+The rest (56 + 66) were predicted wrongly by the KNN classifier where $k = 1\).
 
 ### Metrics for Diagnostics of Classifiers
 
@@ -317,7 +317,7 @@ To find the accuracy of our model above:
 sum(diag(confusion.matrix))/sum(confusion.matrix) # 0.515873
 ```
 
-$\text{Accuracy} = (55+75)/252 \approx 51.59 \%$
+\(\text{Accuracy} = (55+75)/252 \approx 51.59 \%\)
 Which means that 51.59% of the observations are correctly predicted.
 
 ### True Positive Rate
@@ -352,7 +352,7 @@ $$
 \text{Precision} = \frac{TP}{TP + FP}
 $$
 
-### Model for KNN with $ k = 10$
+### Model for KNN with $k = 10\)
 
 ```r
 knn.pred = knn(train.x,test.x,train.y,k=10)
@@ -369,14 +369,14 @@ Notice that the accuracy is slightly higher.
   <img src="diagrams/nfoldcrossvalidation.png"  style="max-height: 370px;">
 </div>
 
-1. The entire data set is randomly split into $ N $ data sets of approximately equal size.
-2. $ (N-1) $ of these data sets are treated as the training data set, while the remaining one is the test data set. A measure of the model error is obtained.
-3. This process is repeated across the various combinations of $ N $ data sets taken $ (N-1) $ at a time.
-4. The observed $ N $ models' errors are averaged across the $ N $ folds.
+1. The entire data set is randomly split into $N$ data sets of approximately equal size.
+2. $(N-1)$ of these data sets are treated as the training data set, while the remaining one is the test data set. A measure of the model error is obtained.
+3. This process is repeated across the various combinations of $N$ data sets taken $(N-1)$ at a time.
+4. The observed $N$ models' errors are averaged across the $N$ folds.
 
 ---
 
-### 5-fold Cross-Validation for KNN with $k=1, 5, 10$
+### 5-fold Cross-Validation for KNN with \(k=1, 5, 10\)
 
 1. Extract the **features** and **response**:
 
