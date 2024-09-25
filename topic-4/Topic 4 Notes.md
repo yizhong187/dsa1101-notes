@@ -21,7 +21,7 @@ For simplicity, we only consider the cases of binary response $ (0, 1) $ only. H
 The $ k $-nearest neighbors method uses training points closest in feature space to $ x $ to find:
 
 $$
-\frac{1}{k} \sum\_{i \in \mathcal{N}\_k(x)} y_i,
+\frac{1}{k} \sum_{i \in \mathcal{N}_k(x)} y_i,
 $$
 
 where $ \mathcal{N}\_k(x) $ is the neighborhood of $ x $ defined as the set of $ k $ closest points (in terms of Euclidean distance).
@@ -31,10 +31,12 @@ $ \delta $ is a pre-chosen threshold, and the average above is converted to $ \h
 $$
 \hat{G}(x) =
 \begin{cases}
-1, & \text{if it's } > \delta, \\
+1, & \text{if } x > \delta, \\
 0, & \text{otherwise}.
 \end{cases}
 $$
+
+$ \delta $ can be chosen based on ratio of the categories in the training data. If we have $20$ of Category 1 and $5$ of Category 2, then the threshold for classifying Category 1 could be $0.8$.
 
 ---
 
