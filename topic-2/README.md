@@ -331,7 +331,7 @@ plot(order, total, pch = 20, col = "darkblue")
 
 ## Association Between One Categorical and One Quantitative Variable
 
-### Boxplots of Muliple Groups
+### Boxplots of Multiple Groups
 
 Categorical variable "cancer" has two categories: male and female. Variable "Age" is quantitative. One would check for any relationship between these two variables using a boxplot:
 
