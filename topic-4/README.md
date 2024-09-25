@@ -462,4 +462,9 @@ test.row <- which(label == 2)
 # get all the test and train rows seperately
 test.set = market[test.row, ]
 train.set = market[-test.row, ]
+
+# A Faster Way to do your yee yee ass nonsense (in Tutorial 6)
+train = sample(1:n , n1); # randomly sample a set of n1 indexes in 1:n
+train.set = market[train, ] # n1 data points for the train set
+test.set = market[-train, ] # n2 data points for the test set
 ```
