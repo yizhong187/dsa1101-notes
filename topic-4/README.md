@@ -442,7 +442,7 @@ accur=mean(acc); accur # this is the avarage accuracy over 5 folds
 
 ```r
 # number of rows/observations in original data
-n = dim(market) # n = 1250
+n = dim(market)[1] # n = 1250
 
 # number of points in train set
 n1 = floor(n/10*8) # n1 = 1000
