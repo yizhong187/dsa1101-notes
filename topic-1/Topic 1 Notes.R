@@ -165,6 +165,13 @@ x
 
 #-----------------------------------------
 
+# sort(vector)
+x = c(1,4,4,6,3,2,7,5,4,8,5,9,10)
+sorted.x = sort(x)
+top.3.indices = which(x <= sorted.x[3])
+
+#-----------------------------------------
+
 #functions
 find.sum = function(x = 1, y) { 
   s = sum(x)
