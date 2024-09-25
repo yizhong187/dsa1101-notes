@@ -271,15 +271,15 @@ TP and TN are the correct predictions. A good classifier should have large TP an
 To generate a confusion matrix for our model above:
 
 ```r
-confusion.matrix = table(test.y, knn.pred)
+confusion.matrix = table(knn.pred, test.y)
 confusion.matrix
 ```
 
 ```
-      knn.pred
-test.y Down Up
-  Down   55 56
-  Up     66 75
+         test.y (actual class)
+knn.pred Down  Up
+Down      55   66
+Up        56   75
 ```
 
 55 Downs were predicted correctly; 75 Ups were predicted correctly.
@@ -328,6 +328,12 @@ $$
 \text{TPR} = \frac{TP}{TP + FN}
 $$
 
+To find the True Positive Rate of our model above:
+
+```r
+confusion.matrix[2, 2]/sum(confusion.matrix[ , 2])
+```
+
 ### False Positive Rate
 
 The true positive rate (TPR) shows the proportion of positive instances the classifier correctly identified, and is also called the false alarm rate or **Type I error rate**:
@@ -335,6 +341,12 @@ The true positive rate (TPR) shows the proportion of positive instances the clas
 $$
 \text{FPR} = \frac{FP}{FP + TN}
 $$
+
+To find the False Positive Rate (type I error rate) of our model above:
+
+```r
+confusion.matrix[2, 1]/sum(confusion.matrix[ , 1])
+```
 
 ### False Negative Rate
 
@@ -344,6 +356,12 @@ $$
 \text{FNR} = \frac{FN}{FN + TP}
 $$
 
+To find the False Negative Rate (Type II error rate) of our model above:
+
+```r
+confusion.matrix[1, 2]/sum(confusion.matrix[ , 2])
+```
+
 ### Precision
 
 Precision is the percentage of instances that are actually positive among the marked positives:
@@ -351,6 +369,12 @@ Precision is the percentage of instances that are actually positive among the ma
 $$
 \text{Precision} = \frac{TP}{TP + FP}
 $$
+
+To find the precision of our model above:
+
+```r
+confusion.matrix[2, 2]/sum(confusion.matrix[2, ])
+```
 
 ### Model for KNN with $k = 10$
 
