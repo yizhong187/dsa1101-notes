@@ -10,8 +10,8 @@ Each member of the set $(x_1, x_2, ..., x_p)$ is called an **input variable** or
 
 ### Example of Decision Tree
 
-<div style="text-align: center;">
-  <img src="diagrams/decisiontree.png"  style="max-height: 300px;">
+<div align="center">
+  <img src="diagrams/decisiontree.png"  height="220">
 </div>
 
 1. **Nodes**:
@@ -50,7 +50,7 @@ Initialise working directory and read file:
 
 ```r
 setwd("/Users/yizhong/School/Y2S1/DSA1101/Data")
-bankdata = read.csv("C:/Data/bank-sample.csv", header = TRUE)
+bankdata = read.csv("bank-sample.csv", header = TRUE)
 ```
 
 Install and call the "rpart" package:
@@ -92,8 +92,8 @@ fit <- rpart(subscribed ~ job+marital+education+default
 
 ### Visualising the Decision Tree
 
-<div style="text-align: center;">
-  <img src="diagrams/bankdecisiontree.png"  style="max-height: 450px;">
+<div align="center">
+  <img src="diagrams/bankdecisiontree.png"  height="400">
 </div>
 
 ```r
@@ -158,68 +158,177 @@ $$
 
 When the coin is biased, we have less uncertainty" in predicting the outcome of its next toss, so that the entropy is lower. When the coin is fair, we are much more less able to predict the next toss, and so the entropy is at its highest value.
 
-### Calculating conditional entropy when 'poutcome' is splitted
+---
 
-# as x1 = failure, other, unknown and x2 = success
+Plotting entropy against probability of binary variable:
 
-x1=which(bankdata$poutcome!="success") # index of the rows where poutcome = x1
+```r
+p = seq(0, 1, 0.01)
+Entropy = - (p * log2(p) + (1 - p) * log2(1 - p))
+plot(p, Entropy, ylab="Entropy", xlab="P(Y=1)", type="l")
+```
+
+<div align="center">
+  <img src="diagrams/entropyplot.png"  height="250">
+</div>
+
+### Base Entropy
+
+The base entropy is defined as the entropy of the output variable.
+
+- $ P(\text{subscribed} = 0) = \frac{1789}{2000} \approx 89.45\% $
+- $ P(\text{subscribed} = 1) = 1 - \frac{1789}{2000} \approx 10.55\% $
+
+Let $ D $ denote the entropy, the base entropy is then
+
+$$
+D_{\text{subscribed}} = - \left\{ 0.1055 \log_2(0.1055) + 0.8945 \log_2(0.8945) \right\} \approx 0.4862.
+$$
+
+### Conditional Entropy
+
+Consider a binary tree algorithm. Suppose a feature $X$ has split values $(x_1, x_2)$. The conditional entropy given feature $X$ and the split points $(x_1, x_2)$ is defined as
+
+$$
+D_{Y|X} = \sum_{i=1}^{2} P(X = x_i) D(Y|X = x_i)
+$$
+
+$$
+= - \sum_{i=1}^{2} \left\{ P(X = x_i) \sum_{j=1}^{K} P(Y = y_j | X = x_i) \log_2 [P(Y = y_j | X = x_i)] \right\}
+$$
+
+---
+
+We will illustrate the calculation of conditional entropy for the decision variable in the root node, $p_{outcome}$.
+
+Let $ x_1 = \text{failure}, \text{other}, \text{unknown} $ and $ x_2 = \text{success} $.
+
+```r
+x1 = which(bankdata$poutcome != "success")
+# index of the rows where poutcome = x1
+
 length(x1) # 1942 rows that the value of poutcome = x1.
+# [1] 1942
 
-x2=which(bankdata$poutcome=="success") # index of the rows where poutcome = x2
+x2 = which(bankdata$poutcome == "success")
+# index of the rows where poutcome = x2
+
 length(x2) # 58 rows that the value of poutcome = x2 = success
+# [1] 58
+```
 
+$P(X = x_1) = \frac{1942}{2000}$ | $P(X = x_2) = \frac{58}{2000}$
+
+---
+
+```r
 table(bankdata$subscribed[x1])
+```
 
-# counting how many "yes" and how many "no" for Subscribed among those with poutcome = x1
+```
+  no   yes
+1768   179
+```
 
-# among 1942 customers with poutcome = x1, 179 subscribed (179 yes), and 1763 no.
+Among 1942 customers with $p_{outcome} = x_1$, 179 subscribed, and 1763 did not.
 
+```r
 table(bankdata$subscribed[x2])
+```
 
-# counting how many "yes" and how many "no" for Subscribed among those with poutcome = x2
+```
+no   yes
+126   32
+```
 
-# among 58 customers with poutcome = x2, 32 subscribed (32 yes), and 26 no.
+Among 58 customers with $p_{outcome} = x_2$, 32 subscribed, and 26 did not.
 
-### Calculating conditional entropy when 'poutcome' is splitted
+<div align="center">
+  <img src="diagrams/conditionalprobability.png"  height="150">
+</div>
 
-# as x1 = success, other, unknown and x2 = failure
+</br>
 
-x1=which(bankdata$poutcome!="failure")
-x2=which(bankdata$poutcome=="failure")
-table(bankdata$subscribed[x1])
-table(bankdata$subscribed[x2])
+Therefore, the conditional entropy for selecting $p_{outcome}$ as the decision variable with the split at $x_1$ and $x_2$ is equal to:
 
-############ PLAYING GOLF EXAMPLE
+$$
+D_{\text{subscribed} | p_{outcome}} = - \sum_{i=1}^{2} P(X = x_i) \sum_{j=1}^{2} P(Y = y_j | X = x_i) \log_2[P(Y = y_j | X = x_i)]
+$$
 
-library("rpart") # load libraries
-library("rpart.plot")
+$$
+= - \left\{ 0.971 \times [0.092 \log_2(0.092) + 0.908 \log_2(0.908)] + 0.029 \times [0.552 \log_2(0.552) + 0.448 \log_2(0.448)] \right\} \approx 0.459.
+$$
 
+Hence, there is a reduction of about $(0.4862 - 0.459) \approx 0.027$ from the base entropy.
+
+### Information Gain
+
+The reduction in entropy is also known as **information gain**.
+
+The decision tree algorithm proceeds at the root and internal nodes by calculating the conditional entropy for **each feature variable $X$** and its **different split points**.
+
+Then, the decision variable and its split points with the **largest information gain** (or largest reduction from base entropy) at that node will be selected.
+
+### Gini Index
+
+Besides Information Gain, another commonly used criterion for selecting the decision variable and split points is the Gini index.
+
+Given variable $Y$ and the set of possible categorical values it can take, $(y_1, y_2, \ldots, y_K)$, the Gini index of $Y$ is defined as
+
+$$
+G_Y = \sum_{j=1}^{K} P(Y = y_j) [1 - P(Y = y_j)],
+$$
+
+where $P(Y = y_j)$ denotes the purity or the probability of the class $Y = y_j$, and
+
+$$
+\sum_{j=1}^{K} P(Y = y_j) = 1.
+$$
+
+### Application II: Playing Golf
+
+**Play** would be the output variable (or the predicted class), and **Outlook, Temperature, Humidity**, and **Wind** would be the input variables.
+
+### Initialisation
+
+Initialise working directory and read file:
+
+```r
+setwd("/Users/yizhong/School/Y2S1/DSA1101/Data")
 play_decision <- read.table("DTdata.csv",header=TRUE,sep=",")
-head(play_decision)
 
+library("rpart")
+library("rpart.plot")
+```
+
+### Building and Visualising the Decision Tree
+
+```r
 fit <- rpart(Play ~ Outlook + Temperature + Humidity + Wind,
-method="class",
-data=play_decision,
-control=rpart.control(minsplit=1),
-parms=list(split='information'))
+  method="class",
+  data=play_decision,
+  control=rpart.control(minsplit=1),
+  parms=list(split='information')
+)
 
 rpart.plot(fit, type=4, extra=2)
+```
 
-# PREDICT THE DECISION FOR TWO DAYS:
+### Predicting with Decision Tree
 
+```r
 newdata <- data.frame(Outlook= c("rainy", "sunny"), Temperature= c("mild","hot"),
 Humidity=c("high", "normal"), Wind=c(FALSE, TRUE))
-newdata
 
-predict(fit,newdata=newdata,type="prob") # get the probability
+# get the probability
+p = predict(fit,newdata=newdata,type="prob")
 
-# to get the probabilioty in numeric, we use:
-
+# get the probability in numeric
 p = predict(fit,newdata=newdata,type="prob")
 as.numeric(paste(p))
 
-predict(fit,newdata=newdata,type="class") # getthe class
+# get the class
+p = predict(fit,newdata=newdata,type="class")
 
-pred = predict(fit, newdata = play_decision[,-1], type = "class")
-
-######
+p = predict(fit, newdata = play_decision[,-1], type = "class")
+```
