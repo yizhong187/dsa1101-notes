@@ -184,6 +184,19 @@ sorted_df <- data.frame(original_index = sorted_indices, sorted_values = sorted_
 # To sort a data frame by a certain column
 sorted_df <- df[order(df$column1), ]
 
+# Create new column in DF using another column
+df <- data.frame(
+    name = c("Alice", "Bob", "Charlie", "David"),
+    age = c(23, 35, 28, 15)
+)
+
+# Create a new categorical column 'age_group' with default value 1
+df$age_group <- "1"
+
+# Use which() to modify rows based on the condition
+df$age_group[which(df$age >= 30)] <- "2"
+df$age_group[which(df$age < 18)] <- "0"
+
 
 # TOPIC 2: PROBABILITY & STATISTICS
 sales <- read.csv("yearly_sales.csv")
