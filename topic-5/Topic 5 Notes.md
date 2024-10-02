@@ -58,6 +58,7 @@ Install and call the "rpart" package:
 ```r
 install.packages("rpart")
 library("rpart")
+library("rpart.plot")
 ```
 
 ### Building the Decision Tree

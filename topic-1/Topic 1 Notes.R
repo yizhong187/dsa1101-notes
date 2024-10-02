@@ -30,6 +30,11 @@ seq(from=2, to=10, length = 5)
 # a sequence from 1 up to 10, distance by 1
 seq(10)
 
+# select elements at some indices
+indices <- c(1,5,7)
+x <- c(2, 3, 5, 6, 1, 3, 6, 8, 4, 3, 5, 7, 9, 5, 3, 2, 1)
+selected.x = x[indices]
+
 #---------------------------------------------
 
 # matrix in this format will fill by col, so [[1,3,5],[2,4,6]]
@@ -167,8 +172,19 @@ x
 
 # sort(vector)
 x = c(1,4,4,6,3,2,7,5,4,8,5,9,10)
+y = c(3,2,2,5,6,1,3,4,8,4,2,6,8)
+
+# Sort in incringase order
 sorted.x = sort(x)
-top.3.indices = which(x <= sorted.x[3])
+
+# find indicies of 3 smallest elements in x
+smallest.3.indices = which(x <= sorted.x[3])
+
+# Sort in decreasing order
+sorted.x = sort(x, decreasing = TRUE)
+
+# find indicies of 3 largest elements in x
+largest.3.indices = which(x >= sorted.x[3])
 
 #-----------------------------------------
 

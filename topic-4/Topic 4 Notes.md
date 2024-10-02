@@ -172,9 +172,7 @@ train.x = train.data[ ,c("Lag1","Lag2","Lag3","Lag4","Lag5")]
 test.x = test.data[ ,c("Lag1","Lag2","Lag3","Lag4","Lag5")]
 ```
 
-Note that we only use the 5 lags as features where the magnitude of these 5 columns is the same. Hence, there is no need to standardize.
-
-However, it is recommended to standardize the quantitative columns when their magnitude differ.
+**Note that in the above example, the 5 lags used as features have the same magnitude and hence, there is no need to standardize, but usually IT IS COMPULSORY**
 
 ### Forming the <u>Response</u> for Training and for Testing
 
@@ -244,6 +242,47 @@ data.frame(test.y, knn.pred) # combines the true class label and predicted class
         .
         .
         .
+```
+
+### Standardizing Numeric Features
+
+**Must** standardize the quantitative columns when their magnitude differ.
+
+In the above example, the 5 lags used as features have the same magnitude and hence, there is no need to standardize.
+
+Given a data `data` as such:
+
+```r
+    sex length diameter weight  age  Year
+1     M     91       73  102.8 16.5   old
+2     M     70       53   45.1  8.5 young
+3     F    106       84  135.4 10.5 young
+4     M     88       73  103.2 11.5   old
+                    .
+                    .
+                    .
+```
+
+Scaling item 1 and item 3 (using full data for both):
+
+```r
+train.x = scale(data[, c("length", "diameter", "weight")])
+test.x = scale(data[, c("length", "diameter", "weight")])
+```
+
+For only one test input:
+
+```r
+new.abalone = data.frame(sex = "M", length = 120, diameter = 90, weight = 240)
+test.x = tail(scale(rbind(data[, c("length", "diameter", "weight")],
+                          new.abalone[, c("length", "diameter", "weight")])), 1)
+```
+
+Forming and testing the model:
+
+```r
+train.y = data[, "Year"]
+pred <- knn(train.x, test.x, train.y, k=5)
 ```
 
 ### Diagnostics (Understanding the Model)
@@ -439,8 +478,8 @@ acc=numeric(n_folds)
 for (j in 1:n_folds) {
     test_j <- which(folds_j == j) # vector of indices corresponding to the fold
 
-    train.x = X[-test_j, ] # item 1
-    test.x = X[test_j, ] # item 2
+    train.x = scale(X[-test_j, ]) # item 1
+    test.x = scale(X[test_j, ]) # item 2
     train.y = Y[-test_j ] # item 3
 
     # KNN with k = 1, 5, 10, etc
@@ -502,7 +541,8 @@ n2 = n - n1
 # randomly sample a set of n1 indexes in 1:n
 train = sample(1:n , n1);
 
-train.x = market[train, c("Lag1","Lag2","Lag3","Lag4","Lag5")]
+# GOD SAKE IM INCLUDING SCALING IN EVERYTHING I LOVE DSA
+train.x = scale(market[train, c("Lag1","Lag2","Lag3","Lag4","Lag5")])
 train.y = market[train, c("Direction")]
-test.x = market[-train, c("Lag1","Lag2","Lag3","Lag4","Lag5")]
+test.x = scale(market[-train, c("Lag1","Lag2","Lag3","Lag4","Lag5")])
 ```
