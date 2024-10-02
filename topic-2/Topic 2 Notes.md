@@ -145,6 +145,8 @@ Density plots can be thought of as plots of smoothed histograms.
   <img src="diagrams/skewness.png"  height="250">
 </div>
 
+If the histogram is left skewed, mean will be lower than the median, and vice versa.
+
 ---
 
 ### Plotting Histograms
@@ -229,6 +231,16 @@ Boxplots provide a skeletal representation of a distribution, and they are very 
 4. **Outliers**:
    - Outliers are individual data points that fall outside of the range defined by the whiskers (i.e., beyond $1.5 \times \text{IQR}$).
    - They are plotted as individual points outside the whiskers.
+
+### Distribution from Boxplots
+
+**Median Position**: Centered (symmetrical), bottom (right-skewed), or top (left-skewed)
+
+**Whisker Lengths**: Equal (symmetrical), longer upper whisker (right-skewed), longer lower whisker (left-skewed)
+
+1. Symmetrical: Median line roughly in the centre of the box, and whiskers are approximately equal in length.
+2. Right Skewness (Mean > Median): Median line is closer to the bottom of the box and the upper whisker is longer than the lower whisker.
+3. Left Skewness (Mean < Median): Median line is closer to the top of the box and the lower whisker is longer than the upper whisker.
 
 ### Plotting Boxplots
 
