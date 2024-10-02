@@ -85,14 +85,20 @@ predict(M, newdata = new)
 ```R
 price = resale$resale_price
 area = resale$floor_area_sqm
-hdb.model = lm(price~area)
+hdb.model = lm(price ~ area)
 hdb.model$coef # coefficients of the hdb model
 ```
 
+Alternatively, for the modelling step:
+
+```r
+hdb.model = lm(price ~ area, data = resale)
 ```
-(Intercept)        area
- 115145.730    3117.212
-```
+
+(Intercept) area
+115145.730 3117.212
+
+````
 
 The fitted model is then
 
@@ -122,7 +128,7 @@ If the test has a small p-value (such as $ < 0.05 $), then data provide strong e
 
 ```R
 summary(hdb.model)
-```
+````
 
 ```
 Call:
