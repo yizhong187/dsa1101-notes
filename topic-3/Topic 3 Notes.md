@@ -104,8 +104,8 @@ where $y$ is the resale price of a flat, in SGD.
 
 The goodness-of-fit of a model could be accessed by some measures. In this course, we consider only two basic measurements:
 
--   The significance of the model by a test (F-test).
--   Coefficient of determination, $R^2$.
+- The significance of the model by a test (F-test).
+- Coefficient of determination, $R^2$.
 
 When comparing the goodness-of-fit of two models with the **same response**, we can use Residual Standard Error (RSE) as a criterion.
 
@@ -115,8 +115,8 @@ To test if the whole model is significant or not, we use F-test.
 
 Its null hypothesis ($ H_0 $) states "model is NOT significant". Its alternative ($ H_1 $) states "model is significant". Equivalently:
 
--   $ H_0 $ : all the coefficients, except intercept, are zero.
--   $ H_1 $: at least one of the coefficients (except intercept), is NON-zero.
+- $ H_0 $ : all the coefficients, except intercept, are zero.
+- $ H_1 $: at least one of the coefficients (except intercept), is NON-zero.
 
 If the test has a small p-value (such as $ < 0.05 $), then data provide strong evidence against $ H_0 $. Otherwise, we cannot eliminate $ H_0 $.
 
@@ -276,9 +276,9 @@ n = dim(resale)[1] # total number of rows/observations
 index.train = sample(1:n)[1:(0.8*n)]
 ```
 
--   This 2nd line generates a random sample of indices from the range `1:n` (where n is the total number of observations).
--   `1:n` generates a sequence from 1 to n.
--   `0.8*n` specifies that you want to sample 80% of the total number of observations (which is often used to create a training dataset).
+- This 2nd line generates a random sample of indices from the range `1:n` (where n is the total number of observations).
+- `1:n` generates a sequence from 1 to n.
+- `0.8*n` specifies that you want to sample 80% of the total number of observations (which is often used to create a training dataset).
 
 2. Take the first 80% of those mixed indices as indices of train data and the remaining 20% as indices of test data:
 
@@ -340,7 +340,20 @@ FLAT TYPE has 5 categories. R chooses `2 ROOM` as reference category, and this c
 
 Coefficient 26753.48 of `3 ROOM` means:
 
--   fixing other variables in the model, compared to a `2 ROOM` flat then on average, a `3 ROOM` flat is more expensive by $26753.48.
+- fixing other variables in the model, compared to a `2 ROOM` flat then on average, a `3 ROOM` flat is more expensive by $26753.48.
+
+### Describing the Linear Model
+
+For the linear model above:
+
+```
+resale_price_hat = 183375.6
+                   + 1904.9 * floor_area_sqm
+                   + 24712.7 * I(flat_type = "3 ROOM")
+                   + 42897.9 * I(flat_type = "4 ROOM")
+                   + 66198.2 * I(flat_type = "5 ROOM")
+                   + 156561.4 * I(flat_type = "EXECUTIVE")
+```
 
 ### Assumptions of Response to Form a Linear Model
 

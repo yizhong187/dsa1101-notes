@@ -207,29 +207,27 @@ Boxplots provide a skeletal representation of a distribution, and they are very 
 
 1. **Box**:
 
-   - The box itself represents the interquartile range (IQR), which is the range between the first quartile ($ Q1 $) and the third quartile ($ Q3 $).
+   - The box itself represents the interquartile range (IQR), which is the range between the first quartile ($Q1$) and the third quartile ($Q3$).
 
-   $$
-   \text{IQR} = Q3 - Q1
-   $$
+   $$\text{IQR} = Q3 - Q1$$
 
    - This range contains the middle 50% of the data.
 
-2. **Median (Q2)**:
+2. **Median ($Q2$)**:
 
-   - The line inside the box represents the median ($ Q2 $), which is the middle value of the dataset.
+   - The line inside the box represents the median ($Q2$), which is the middle value of the dataset.
    - It splits the data into two equal halves.
 
 3. **Whiskers**:
 
    - The whiskers extend from the box to the minimum and maximum values of the data, but only up to a certain point.
-   - By default, the whiskers extend to $ 1.5 \times \text{IQR} $ from $ Q1 $ and $ Q3 $.
-   - The lower whisker goes down to $ Q1 - 1.5 \times \text{IQR} $.
-   - The upper whisker goes up to $ Q3 + 1.5 \times \text{IQR} $.
+   - By default, the whiskers extend to $1.5 \times \text{IQR}$ from $Q1$ and $Q3$.
+   - The lower whisker goes down to $Q1 - 1.5 \times \text{IQR}$.
+   - The upper whisker goes up to $Q3 + 1.5 \times \text{IQR}$.
    - Data points beyond the whiskers are considered outliers.
 
 4. **Outliers**:
-   - Outliers are individual data points that fall outside of the range defined by the whiskers (i.e., beyond $ 1.5 \times \text{IQR} $).
+   - Outliers are individual data points that fall outside of the range defined by the whiskers (i.e., beyond $1.5 \times \text{IQR}$).
    - They are plotted as individual points outside the whiskers.
 
 ### Plotting Boxplots
@@ -333,7 +331,7 @@ plot(order, total, pch = 20, col = "darkblue")
 
 ## Association Between One Categorical and One Quantitative Variable
 
-### Boxplots of Muliple Groups
+### Boxplots of Multiple Groups
 
 Categorical variable "cancer" has two categories: male and female. Variable "Age" is quantitative. One would check for any relationship between these two variables using a boxplot:
 
