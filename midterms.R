@@ -277,6 +277,9 @@ sales[c(index), ]
 # QQ plot
 qqnorm(total, main = "QQ Plot", pch = 20) # QQ plot of total
 qqline(total, col = "red") # reference line for given the QQ plot.
+# For sample against theoretical,
+# right tail above qqline -> right tail is longer than normal
+# left tail above qqline -> left tail is shorter than normal
 
 # CORRELATION COEFFICIENT
 order <- sales$num_of_orders
