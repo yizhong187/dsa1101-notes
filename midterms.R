@@ -277,6 +277,9 @@ sales[c(index), ]
 # QQ plot
 qqnorm(total, main = "QQ Plot", pch = 20) # QQ plot of total
 qqline(total, col = "red") # reference line for given the QQ plot.
+# For sample against theoretical,
+# right tail above qqline -> right tail is longer than normal
+# left tail above qqline -> left tail is shorter than normal
 
 # CORRELATION COEFFICIENT
 order <- sales$num_of_orders
@@ -359,9 +362,10 @@ data$y <- as.factor(data$y) # if y is a categorical variable
 # TOPIC 4: KNN
 library("class")
 # k = k for KNN, input = the input variables (can be multiple columns),
+# assumes input is not scaled yet
 # response = response variable (should be one col), training_frac = proportion of data used for training (between 0 and 1)
 single_knn <- function(k, input, response, training_frac) {
-    set.seed(1)
+    input <- scale(input)
     index <- sample(1:dim(input)[1], training_frac * dim(input)[1])
     train_data <- input[index, ]
     train_response <- response[index]
