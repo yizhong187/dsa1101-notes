@@ -342,7 +342,7 @@ inspect(head(sort(itemsets.2, by = "support"), 10))
 
 ---
 
-**Getting the frequent 3-itemsets: **
+**Getting the frequent 3-itemsets:**
 
 ```r
 itemsets.3 <- apriori(Groceries, parameter=list(minlen=3,
