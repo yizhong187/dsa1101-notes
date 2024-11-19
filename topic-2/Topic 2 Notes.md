@@ -514,3 +514,35 @@ $$
 ```
 
 Meaning of the value: the odds of larger orders among females is 0.76 times the odds of large orders among males.
+
+### Comments on Plots
+
+<div align="center">
+  <img src="diagrams/FEVplot.png"  height="300">
+</div>
+
+- The computed correlation is quite high, and it is clear from the plot that there is a strong positive linear association between the two variables overall.
+
+- The range of FEV for males appears larger than the range for females, as does the range of heights.
+- The variability of FEV at lower heights does seem to be slightly less than the variability of FEV at greater heights.
+
+---
+
+<div align="center">
+  <img src="diagrams/FEVhistogram.png"  height="300">
+</div>
+
+- The histogram shows that the sample is unimodal. Compared to the overlaid normal density curve, the
+  distribution looks slightly right-skewed.
+- Most of the observations are within a range of 0.5 to 6 there are no observations that are separated from the rest. However, this does not mean there are no outliers.
+
+---
+
+<div align="center">
+  <img src="diagrams/pricesizeplot.png"  height="300">
+</div>
+
+- There is a clear (obvious) association shown.
+- The association is positive.
+- The association is quite linear.
+- The variability of y (the price) is quite stable when x (the size) changes

@@ -35,6 +35,10 @@ indices <- c(1,5,7)
 x <- c(2, 3, 5, 6, 1, 3, 6, 8, 4, 3, 5, 7, 9, 5, 3, 2, 1)
 selected.x = x[indices]
 
+# get index of smallest/largest element
+which.min(x)
+which.max(x)
+
 #---------------------------------------------
 
 # matrix in this format will fill by col, so [[1,3,5],[2,4,6]]
