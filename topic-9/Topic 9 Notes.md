@@ -195,9 +195,9 @@ Groceries@itemInfo[1:10,]
 10              pork    pork meat and sausage
 ```
 
-- labels: Names of the grocery items.
-- level2: Specific subcategories (e.g., “sausage”).
-- level1: Higher-level categories (e.g., “meat and sausage”).
+-   labels: Names of the grocery items.
+-   level2: Specific subcategories (e.g., “sausage”).
+-   level1: Higher-level categories (e.g., “meat and sausage”).
 
 <br>
 
@@ -222,17 +222,17 @@ Groceries@data[,100:110] # 11 columns and 169 rows.
 
 Rows:
 
-- Each row corresponds to an item category (169 total rows for 169 unique items in the dataset).
-- Examples of categories might include “frankfurter,” “chicken,” etc.
+-   Each row corresponds to an item category (169 total rows for 169 unique items in the dataset).
+-   Examples of categories might include “frankfurter,” “chicken,” etc.
 
 Columns:
 
-- Each column represents a transaction (11 columns shown in this output for 11 transactions, starting from transaction #100).
+-   Each column represents a transaction (11 columns shown in this output for 11 transactions, starting from transaction #100).
 
 Cells:
 
-- A dot `.` represents a 0, meaning the item is not included in that transaction.
-- A `|` or other marker indicates a 1, meaning the item was purchased in that transaction.
+-   A dot `.` represents a 0, meaning the item is not included in that transaction.
+-   A `|` or other marker indicates a 1, meaning the item was purchased in that transaction.
 
 ### Itemsets
 
@@ -247,9 +247,9 @@ itemsets.1 <- apriori(Groceries, parameter=list(minlen=1,
 
 Note:
 
-- `minlen = 1`: frequent itemset has at least 1 item
-- `maxlen = 1`: frequent itemset has at max 1 item
-- Setting both `minlen = 1` and `maxlen = 1` means we want frequent itemset that has strictly 1 item.
+-   `minlen = 1`: frequent itemset has at least 1 item
+-   `maxlen = 1`: frequent itemset has at max 1 item
+-   Setting both `minlen = 1` and `maxlen = 1` means we want frequent itemset that has strictly 1 item.
 
 ```r
 summary(itemsets.1)
@@ -318,7 +318,7 @@ inspect(sort(itemsets.1, by ="support"))
 **Getting the frequent 2-itemsets: **
 
 ```r
-itemsets.1 <- apriori(Groceries, parameter=list(minlen=2,
+itemsets.2 <- apriori(Groceries, parameter=list(minlen=2,
                                                 maxlen=2,
                                                 support=0.02,
                                                 target="frequent itemsets"))
