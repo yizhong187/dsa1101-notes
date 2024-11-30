@@ -562,6 +562,10 @@ plot(x=hdb$floor_area_sqm, y=hdb$amenities,
 # feature scale data for k means
 hdb = scale(hdb)
 
+# to retrieve the mean/sd used for scaling
+mean_val <- attr(scaled_data, "scaled:center")
+sd_val <- attr(scaled_data, "scaled:scale")
+
 # classifier
 kout <- kmeans(hdb[, c("floor_area_sqm","amenities")], centers=2)
 ```
